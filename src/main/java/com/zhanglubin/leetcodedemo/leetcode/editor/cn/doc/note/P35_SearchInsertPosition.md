@@ -1,0 +1,1 @@
+二分法 if条件必须是nums[mid] < target，如果是target < nums[mid]会因为left不能+1而陷入死循环

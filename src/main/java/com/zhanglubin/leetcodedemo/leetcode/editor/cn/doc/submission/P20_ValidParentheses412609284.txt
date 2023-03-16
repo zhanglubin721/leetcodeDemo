@@ -1,0 +1,37 @@
+class Solution {
+    public boolean isValid(String s) {
+        HashMap<Character, Character> map = initMap();
+        LinkedList<Character> auxiliaryStack = new LinkedList<>();
+        for (char c : s.toCharArray()) {
+            if (auxiliaryStack.size() == 0) {
+                if (map.get(c) == null) {
+                    return false;
+                } else {
+                    auxiliaryStack.add(c);
+                }
+            } else {
+                if (map.get(c) != null) {
+                    auxiliaryStack.add(c);
+                } else if (map.get(auxiliaryStack.removeLast()) != c){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public HashMap<Character, Character> initMap() {
+        HashMap<Character, Character> map = new HashMap<>();
+        map.put('(', ')');
+        map.put('{', '}');
+        map.put('[', ']');
+        return map;
+    }
+}
+
+//total_testcases:92
+//total_correct:83
+//input_formatted:"["
+//expected_output:false
+//code_output:true
+//last_testcase:"["
