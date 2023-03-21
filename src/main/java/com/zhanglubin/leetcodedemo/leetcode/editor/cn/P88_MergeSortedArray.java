@@ -63,13 +63,33 @@ package com.zhanglubin.leetcodedemo.leetcode.editor.cn;
 public class P88_MergeSortedArray{
     public static void main(String[] args) {
         Solution solution = new P88_MergeSortedArray().new Solution();
-        
+        int[] nums1 = {1, 2, 3, 0, 0, 0};
+        int[] nums2 = {2, 5, 6};
+        solution.merge(nums1, 3, nums2, 3);
+        System.out.println(1);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-
+        int cur = m + n - 1;
+        while (m > 0 || n > 0) {
+            if (m == 0) {
+                nums1[cur] = nums2[--n];
+                cur--;
+            } else if (n == 0) {
+                nums1[cur] = nums1[--m];
+                cur--;
+            } else {
+                if (nums2[n - 1] > nums1[m - 1]) {
+                    nums1[cur] = nums2[--n];
+                    cur--;
+                } else {
+                    nums1[cur] = nums1[--m];
+                    cur--;
+                }
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
